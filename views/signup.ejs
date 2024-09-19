@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - MyBlog</title>
+    <link href="https://unpkg.com/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Sign Up Form -->
+    <div class="flex justify-center items-center h-screen">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
+            <h1 class="text-3xl font-bold text-white mb-6 text-center">Sign Up</h1>
+            
+            <form action="/createUser" method="POST">
+                <!-- Name Field -->
+                <div class="mb-4">
+                    <label for="name" class="block text-lg font-medium text-gray-300 mb-2">Name</label>
+                    <input type="text" name="name" id="name" class="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                </div>
+
+                <!-- Password Field -->
+                <div class="mb-6">
+                    <label for="password" class="block text-lg font-medium text-gray-300 mb-2">Password</label>
+                    <input type="password" name="password" id="password" class="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                </div>
+
+                <!-- Sign Up Button -->
+                <div class="text-center">
+                    <button type="submit" class="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md transition duration-300">
+                        Sign Up
+                    </button>
+                </div>
+            </form>
+
+            <!-- Login Link -->
+            <p class="mt-6 text-center text-gray-400">
+                Already have an account? 
+                <a href="/login" class="text-indigo-500 hover:text-indigo-400 font-medium">Login here</a>.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

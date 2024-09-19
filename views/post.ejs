@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= post.title %> - MyBlog</title>
+    <link href="https://unpkg.com/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-900 text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
+            <!-- Left Section - Blog Name -->
+            <div class="flex items-center">
+                <a href="/home/<%= user.name %>" class="text-2xl font-bold text-indigo-500">MyBlog</a>
+            </div>
+
+            <!-- Middle Section - Navigation Links -->
+            <div class="flex items-center space-x-6">
+                <a href="/home/<%= user.name %>" class="text-gray-400 hover:text-white">Home</a>
+                <a href="/home/<%=user.name%>/myposts" class="text-gray-400 hover:text-white">My Posts</a>
+                <a href="/<%= user.name %>/post/create" class="text-gray-400 hover:text-white">Create Post</a>
+                <a href="/profile/<%= user.name %>" class="text-gray-400 hover:text-white">Profile</a>
+            </div>
+
+            <!-- Right Section - User Info and Logout -->
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-400">Hello, <%= user.name %></span>
+                <a href="/" class="text-red-400 hover:text-red-300">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 py-12">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h1 class="text-4xl font-extrabold mb-4"><%= post.title %></h1>
+            <p class="text-gray-400 mb-6">By <%= post.author.name %> |  </p>
+            <p class="text-lg text-gray-300"><%- post.content %></p>
+            
+
+        </div>
+
+        <!-- Comments Section -->
+        <section class="mt-12">
+            <h2 class="text-2xl font-bold mb-4">Comments</h2>
+
+            <!-- Existing Comments -->
+            <% if (post.comments.length > 0) { %>
+                <div class="space-y-6">
+                    <% post.comments.forEach(function(comment) { %>
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <p class="text-gray-300"><%= comment.comment %></p>
+                            <p class="text-gray-400 text-sm mt-2">- <%= comment.user.name %> on <%= new Date(comment.createdAt).toLocaleDateString() %></p>
+
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <p class="text-gray-500">No comments yet. Be the first to comment!</p>
+            <% } %>
+
+            <!-- Comment Form -->
+            <form action="/<%=user.name%>/post/<%= post._id %>/comment" method="POST" class="mt-8 bg-gray-800 p-6 rounded-lg">
+                <label for="comment" class="block text-lg font-semibold mb-2">Leave a Comment:</label>
+                <textarea id="comment" name="comment" rows="4" class="w-full p-3 rounded-md bg-gray-700 text-white" placeholder="Write your comment here..." required></textarea>
+                <button type="submit" class="mt-4 px-6 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md">Post Comment</button>
+            </form>
+        </section>
+    </div>
+
+</body>
+
+</html>
